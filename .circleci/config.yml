@@ -1,0 +1,31 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.10
+    environment:
+      CC_TEST_REPORTER_ID: 4ece29c6-353a-4cdd-830a-a9eac1a79a90
+    steps:
+      - checkout
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+              # download test reporter as a static binary
+              curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+              chmod +x ./cc-test-reporter
+              ./cc-test-reporter before-build
+      - run:
+          name: Install Pip
+          command: |
+            python3.10 -m ensurepip --default-pip
+            python3.10 -m pip install --upgrade pip==23.2.1
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: Running Tests
+          command: coverage run -m unittest && coverage xml && coverage report -m
+      - run:
+          name: Update CodeClimate coverage report
+          command: |
+              ./cc-test-reporter after-build
