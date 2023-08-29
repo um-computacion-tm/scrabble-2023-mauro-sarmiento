@@ -10,6 +10,23 @@ class TestPlayer(unittest.TestCase):
             0,
         )
 
+    def test_startTurn(self):
+        player_1 = Player()
+        player_1.startTurn()
+        self.assertEqual(
+            (player_1.turn),
+            True)
+        
+    def test_startAndEndTurn(self):
+        player_1 = Player()
+        player_1.startTurn()
+        self.assertEqual(
+            (player_1.turn),
+            True)
+        player_1.endTurn()
+        self.assertEqual((player_1.turn),
+                          False)
+
 
 if __name__ == '__main__':
     unittest.main()
