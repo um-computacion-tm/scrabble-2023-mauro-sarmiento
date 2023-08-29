@@ -3,6 +3,8 @@ __pycache__/*
 */__pycache__/*
 
 #Virtualenv
+ venv
 
-
-requeriments.txt
+ path
+ 
+coverage.xml
