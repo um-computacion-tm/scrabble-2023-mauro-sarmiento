@@ -1,5 +1,5 @@
 import unittest
-from game.player import Player
+from game.player import Player, TilesOutOfRange
 from game.models import Tile, BagTiles
 
 
@@ -33,6 +33,28 @@ class TestPlayer(unittest.TestCase):
         bagGeneral = BagTiles()
         player_1.getTiles(2, bagGeneral)
         self.assertEqual(len(player_1.tiles), 2)
+
+    def test_playerGetTileOutOfRange_I(self):
+        player_1 = Player()
+        bagGeneral = BagTiles()
+        player_1.getTiles(4, bagGeneral)
+        with self.assertRaises(TilesOutOfRange):
+            player_1.getTiles(4, bagGeneral)
+        player_1.getTiles(2, bagGeneral)
+        self.assertEqual(len(player_1.tiles), 6)
+
+
+    def test_playerGetTileOutOfRange_II(self):
+        player_1 = Player()
+        bagGeneral = BagTiles()
+        with self.assertRaises(TilesOutOfRange):
+            player_1.getTiles(8, bagGeneral)
+        player_1.getTiles(2, bagGeneral)
+        self.assertEqual(len(player_1.tiles), 2)
+
+
+
+
 
 
 
