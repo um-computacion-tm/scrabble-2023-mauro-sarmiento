@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: cimg/python:3.10
     environment:
-      CC_TEST_REPORTER_ID: 4ece29c6-353a-4cdd-830a-a9eac1a79a90
+      CC_TEST_REPORTER_ID: 2e0d5e39-aebd-44d3-be34-34541e0f9d66
     steps:
       - checkout
       - run:
