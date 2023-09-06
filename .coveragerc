@@ -14,5 +14,5 @@ exclude_lines =
     return raw_input
     print
     if __name__ == '__main__':
-    def suite
-    __str__
+        def suite
+        __str__
