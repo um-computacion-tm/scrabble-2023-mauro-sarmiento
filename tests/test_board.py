@@ -80,6 +80,30 @@ class TestBoard(unittest.TestCase):
         tablero.board[6][0] = 'A'
         self.assertEqual((tablero.verticalWord('CASA')), None)
 
+    def testValidarEnHorizontal(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.board[3][3] = 'A'
+        tablero.board[3][4] = 'R'
+        tablero.board[3][5] = 'A'
+        tablero.board[3][6] = 'S'
+        tablero.board[3][7] = 'A'
+        tablero.board[3][8] = 'K'
+        tablero.board[3][9] = 'A'
+        self.assertEqual((tablero.horizontalWord('ARASAKA')), True)
+
+    def testValidarEnHorizontalFalso(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.board[3][3] = 'A'
+        tablero.board[3][4] = 'R'
+        tablero.board[3][5] = 'A'
+        tablero.board[3][6] = 'S'
+        tablero.board[3][7] = 'A'
+        tablero.board[3][8] = 'K'
+        tablero.board[3][9] = 'A'
+        self.assertEqual((tablero.horizontalWord('AROSAKO')), None)
+
 
     
 
