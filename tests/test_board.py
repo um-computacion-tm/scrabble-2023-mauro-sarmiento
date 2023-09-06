@@ -28,7 +28,7 @@ class TestBoard(unittest.TestCase):
     ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
 ])
     
-    def testTableroInicial(self):
+    def testTableroConPalabrasGrafico(self):
         tablero = Board()
         tablero.initialBoard()
         tablero.board[0][0] = 'A'
@@ -55,7 +55,30 @@ class TestBoard(unittest.TestCase):
     ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
     ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
 ])
-        
+                
+    def testValidarEnVertical(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.board[0][0] = 'A'
+        tablero.board[1][0] = 'R'
+        tablero.board[2][0] = 'A'
+        tablero.board[3][0] = 'S'
+        tablero.board[4][0] = 'A'
+        tablero.board[5][0] = 'K'
+        tablero.board[6][0] = 'A'
+        self.assertEqual((tablero.verticalWord('ARASAKA')), True)
+
+    def testValidarEnVerticalFalso(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.board[0][0] = 'A'
+        tablero.board[1][0] = 'R'
+        tablero.board[2][0] = 'A'
+        tablero.board[3][0] = 'S'
+        tablero.board[4][0] = 'A'
+        tablero.board[5][0] = 'K'
+        tablero.board[6][0] = 'A'
+        self.assertEqual((tablero.verticalWord('CASA')), None)
 
 
     

@@ -43,7 +43,6 @@ class Board:
             row_to_string = ''.join(str(elemento) for elemento in self.board[j])
             index = row_to_string.find(palabra)
             if index != -1:
-                print('Si está')
                 return True
             else:
                 continue
