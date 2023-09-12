@@ -31,13 +31,7 @@ class TestBoard(unittest.TestCase):
     def testTableroConPalabrasGrafico(self):
         tablero = Board()
         tablero.initialBoard()
-        tablero.board[0][0] = 'A'
-        tablero.board[1][0] = 'R'
-        tablero.board[2][0] = 'A'
-        tablero.board[3][0] = 'S'
-        tablero.board[4][0] = 'A'
-        tablero.board[5][0] = 'K'
-        tablero.board[6][0] = 'A'
+        tablero.writeVerticalWord(0, 0, 'ARASAKA')
         self.assertEqual((tablero.board),[
     ['A','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
     ['R','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
@@ -59,53 +53,104 @@ class TestBoard(unittest.TestCase):
     def testValidarEnVertical(self):
         tablero = Board()
         tablero.initialBoard()
-        tablero.board[0][0] = 'A'
-        tablero.board[1][0] = 'R'
-        tablero.board[2][0] = 'A'
-        tablero.board[3][0] = 'S'
-        tablero.board[4][0] = 'A'
-        tablero.board[5][0] = 'K'
-        tablero.board[6][0] = 'A'
-        self.assertEqual((tablero.verticalWord('ARASAKA')), True)
+        tablero.writeVerticalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.verifyVerticalWord('ARASAKA')), True)
 
     def testValidarEnVerticalFalso(self):
         tablero = Board()
         tablero.initialBoard()
-        tablero.board[0][0] = 'A'
-        tablero.board[1][0] = 'R'
-        tablero.board[2][0] = 'A'
-        tablero.board[3][0] = 'S'
-        tablero.board[4][0] = 'A'
-        tablero.board[5][0] = 'K'
-        tablero.board[6][0] = 'A'
-        self.assertEqual((tablero.verticalWord('CASA')), None)
+        tablero.writeVerticalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.verifyVerticalWord('CASA')), None)
 
     def testValidarEnHorizontal(self):
         tablero = Board()
         tablero.initialBoard()
-        tablero.board[3][3] = 'A'
-        tablero.board[3][4] = 'R'
-        tablero.board[3][5] = 'A'
-        tablero.board[3][6] = 'S'
-        tablero.board[3][7] = 'A'
-        tablero.board[3][8] = 'K'
-        tablero.board[3][9] = 'A'
-        self.assertEqual((tablero.horizontalWord('ARASAKA')), True)
+        tablero.writeHorizontalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.verifyHorizontalWord('ARASAKA')), True)
 
     def testValidarEnHorizontalFalso(self):
         tablero = Board()
         tablero.initialBoard()
-        tablero.board[3][3] = 'A'
-        tablero.board[3][4] = 'R'
-        tablero.board[3][5] = 'A'
-        tablero.board[3][6] = 'S'
-        tablero.board[3][7] = 'A'
-        tablero.board[3][8] = 'K'
-        tablero.board[3][9] = 'A'
-        self.assertEqual((tablero.horizontalWord('AROSAKO')), None)
+        tablero.writeHorizontalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.verifyHorizontalWord('AROSAKO')), None)
 
+    def testListaDePuntaje_I(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.writeHorizontalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.board),[
+    ['0','*','A','R','A','S','A','K','A','*','*','4','*','*','0'],
+    ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
+    ['*','*','1','*','*','*','4','*','4','*','*','*','1','*','*'],
+    ['4','*','*','1','*','*','*','4','*','*','*','1','*','*','*'],
+    ['*','*','*','*','1','*','*','*','*','*','1','*','*','*','4'],
+    ['*','5','*','*','*','5','*','*','*','5','*','*','*','5','*'],
+    ['*','*','4','*','*','*','4','*','4','*','*','*','4','*','*'],
+    ['0','*','*','4','*','*','*','1','*','*','*','4','*','*','0'],
+    ['*','*','4','*','*','*','4','*','4','*','*','*','4','*','*'],
+    ['*','5','*','*','*','5','*','*','*','5','*','*','*','5','*'],
+    ['*','*','*','*','1','*','*','*','*','*','1','*','*','*','*'],
+    ['4','*','*','1','*','*','*','4','*','*','*','1','*','*','4'],
+    ['*','*','1','*','*','*','4','*','4','*','*','*','1','*','*'],
+    ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
+    ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
+])
+        self.assertEqual((tablero.wordPoints), [1, 2, 1, 1, 1, 3, 1])
 
-    
+    def testListaDePuntajeAndDefCurrentWords(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.writeHorizontalWord(0, 2, 'ARASAKA')
+        tablero.writeVerticalWord(0, 5, 'SILVERHAND')
+        self.assertEqual((tablero.board),[
+    ['0','*','A','R','A','S','A','K','A','*','*','4','*','*','0'],
+    ['*','1','*','*','*','I','*','*','*','5','*','*','*','1','*'],
+    ['*','*','1','*','*','L','4','*','4','*','*','*','1','*','*'],
+    ['4','*','*','1','*','V','*','4','*','*','*','1','*','*','*'],
+    ['*','*','*','*','1','E','*','*','*','*','1','*','*','*','4'],
+    ['*','5','*','*','*','R','*','*','*','5','*','*','*','5','*'],
+    ['*','*','4','*','*','H','4','*','4','*','*','*','4','*','*'],
+    ['0','*','*','4','*','A','*','1','*','*','*','4','*','*','0'],
+    ['*','*','4','*','*','N','4','*','4','*','*','*','4','*','*'],
+    ['*','5','*','*','*','D','*','*','*','5','*','*','*','5','*'],
+    ['*','*','*','*','1','*','*','*','*','*','1','*','*','*','*'],
+    ['4','*','*','1','*','*','*','4','*','*','*','1','*','*','4'],
+    ['*','*','1','*','*','*','4','*','4','*','*','*','1','*','*'],
+    ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
+    ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
+])
+        self.assertEqual((tablero.wordCurrentPoints()), [1, 3, 1, 4, 1, 3, 4, 1, 1, 6])
+
+    def testListaDePuntajeAndDefCurrentWordsHorizontal(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.writeHorizontalWord(5, 0, 'CAFE')
+        self.assertEqual((tablero.wordCurrentPoints()), [3, 3, 4, 1])
+
+    def testMismaLetraEnHorizontal(self):
+        tablero = Board()
+        tablero.initialBoard()
+        tablero.writeVerticalWord(0, 5, 'SILVERHAND')
+        tablero.writeHorizontalWord(0, 2, 'ARASAKA')
+        self.assertEqual((tablero.board),[
+    ['0','*','A','R','A','S','A','K','A','*','*','4','*','*','0'],
+    ['*','1','*','*','*','I','*','*','*','5','*','*','*','1','*'],
+    ['*','*','1','*','*','L','4','*','4','*','*','*','1','*','*'],
+    ['4','*','*','1','*','V','*','4','*','*','*','1','*','*','*'],
+    ['*','*','*','*','1','E','*','*','*','*','1','*','*','*','4'],
+    ['*','5','*','*','*','R','*','*','*','5','*','*','*','5','*'],
+    ['*','*','4','*','*','H','4','*','4','*','*','*','4','*','*'],
+    ['0','*','*','4','*','A','*','1','*','*','*','4','*','*','0'],
+    ['*','*','4','*','*','N','4','*','4','*','*','*','4','*','*'],
+    ['*','5','*','*','*','D','*','*','*','5','*','*','*','5','*'],
+    ['*','*','*','*','1','*','*','*','*','*','1','*','*','*','*'],
+    ['4','*','*','1','*','*','*','4','*','*','*','1','*','*','4'],
+    ['*','*','1','*','*','*','4','*','4','*','*','*','1','*','*'],
+    ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
+    ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
+])
+        
+
 
 
 
