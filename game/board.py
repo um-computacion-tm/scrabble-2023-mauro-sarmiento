@@ -44,51 +44,34 @@ class Board:
             if self.board[startX][startY] == '4':
                 self.board[startX][startY] = letter
                 self.wordPoints.append(values[letter] * 2)
-                if direction == 'H':
-                    startY += 1    
-                if direction == 'V':
-                    startX += 1
 
             elif self.board[startX][startY] == '5':
                 self.board[startX][startY] = letter
                 self.wordPoints.append(values[letter] * 3)
-                if direction == 'H':
-                    startY += 1    
-                if direction == 'V':
-                    startX += 1
+
 
             elif self.board[startX][startY] == '0':
                 self.board[startX][startY] = letter
                 self.wordPoints.append(values[letter])
                 self.condicionCero = True
-                if direction == 'H':
-                    startY += 1    
-                if direction == 'V':
-                    startX += 1
+
 
             elif self.board[startX][startY] == '1':
                 self.board[startX][startY] = letter
                 self.wordPoints.append(values[letter])
                 self.condicionUno = True
-                if direction == 'H':
-                    startY += 1    
-                if direction == 'V':
-                    startX += 1
 
             elif self.board[startX][startY] == '*'  or letter:
                 if self.board[startX][startY] != letter:
                     self.board[startX][startY] = letter
                     self.wordPoints.append(values[letter])
-                    if direction == 'H':
-                        startY += 1    
-                    if direction == 'V':
-                        startX += 1
                 else:
                     self.wordPoints.append(values[letter])
-                    if direction == 'H':
-                        startY += 1    
-                    if direction == 'V':
-                        startX += 1
+                    
+            if direction == 'H':
+                startY += 1    
+            if direction == 'V':
+                startX += 1
 
     def verifyVerticalWord(self, palabra):
         for k in range(15):
