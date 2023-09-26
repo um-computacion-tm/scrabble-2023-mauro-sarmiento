@@ -21,10 +21,15 @@
     ##[Versión 0.0.3a] 14/9/23 
 
     - La función de escribir se unificó en una sola, que puede escribir tanto el vertical como en horizontal en la matriz
-    - Se introdujo una manera de calcular las celdas y palabras, previamente se podían calcular las palabras dobles, ahora la función de escribir activa una condición cuando la palabra es doble o triple, si cae en un casillero de doble o triple palabra (La implementación de la próxima función llegará con la refactorización de la clase Cell, pero ya es funcional)
+    - Se introdujo una manera de calcular las celdas y palabras, previamente se podían calcular las palabras dobles, ahora la función de escribir activa una condición cuando la palabra es doble o triple, si cae en un casillero de doble o triple palabra (La implementación de la próxima función llegará con la refactorización de la clase Cell, pero ya es funcional).
 
     ##[Versión 0.0.3b] 15/9/23
-    - Se refactorizó la función de escribir en las celdas, reduciendo su complejidad
+    - Se refactorizó la función de escribir en las celdas, reduciendo su complejidad.
 
     ##[Versión 0.0.3c] 16/9/23
     - Se refactorizó la función de escribir en las celdas, reduciendo su complejidad, delegando funciones básicas a otras funciones para achicar el problema, se seguirá trabajando en reducir su complejidad.
+
+##[Versión 0.0.4] - 25/9/23
+
+- Se pueden calcular los puntajes de las palabras individuales
+- ⚠️⚠️⚠️ La clase cell está inactiva debido a un error de importaciones, se calculan los puntos desde Board, en próximas actualizaciones se intentará fixear ⚠️⚠️⚠️
