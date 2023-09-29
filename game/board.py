@@ -7,6 +7,7 @@ class Board:
         self.wordPoints = []
         self.condicionCero = False
         self.condicionUno = False
+        self.puntosActuales = 0
 
     def initialBoard(self):
         initialBoard = [
@@ -32,8 +33,11 @@ class Board:
         for fila in self.board:
             print(fila)
     
-    def wordCurrentPoints(self):
+    def wordCurrentPointsList(self):
         return self.wordPoints
+    
+    def wordCurrentPointsNumber(self):
+        return self.puntosActuales
 
     def initVariables(self):
         self.wordPoints = []
@@ -46,7 +50,6 @@ class Board:
     
     def writeInBoard(self, startX, startY, direction, word):
         self.initVariables()
-        # values = BagTiles().tiles
         for letter in word:
             if self.board[startX][startY] == '4':
                 self.board[startX][startY] = letter
@@ -99,13 +102,14 @@ class Board:
                 continue
 
     def returnPointsAndMultiplier(self):
+        self.puntosActuales = 0
         simple = sum(self.wordPoints)
         if self.condicionCero == True:
-            return simple * 2
+            self.puntosActuales = simple * 2
         
         if self.condicionUno == True:
-            return simple * 3
+            self.puntosActuales = simple * 3
         
-        else: 
-            return simple
+        if self.condicionCero == False and self.condicionUno == False: 
+            self.puntosActuales = simple
 
