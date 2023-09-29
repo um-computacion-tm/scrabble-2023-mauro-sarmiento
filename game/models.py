@@ -41,6 +41,37 @@ class BagTiles:
         }
         # random.shuffle(self.tiles)
 
+
+    def initialTiles(self):
+        initial = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
+                   'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E','E', 'E', 'E',
+                   'O', 'O','O', 'O','O', 'O',
+                   'S', 'S', 'S', 'S','S', 'S',
+                   'N', 'N', 'N', 'N', 'N',
+                   'R', 'R', 'R', 'R', 'R',
+                   'U', 'U', 'U', 'U', 'U',
+                   'D', 'D', 'D', 'D', 'D',
+                   'L', 'L', 'L', 'L',
+                   'T', 'T', 'T', 'T',
+                   'C', 'C', 'C', 'C',
+                   'G', 'G',
+                   'B', 'B',
+                   'M', 'M',
+                   'P', 'P',
+                   'H', 'H',
+                   'K',
+                   'F',
+                   'V',
+                   'Y',
+                   'J',
+                   'LL',
+                   'Ñ',
+                   'RR',
+                   'X',
+                   'Z'
+                      ]
+        self.bagTiles = initial
+
     # def initialTiles(self):
     #     initial = {
     #         ''

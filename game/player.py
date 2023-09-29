@@ -24,5 +24,4 @@ class Player:
     def endTurn(self):
         self.turn = False
 
-
                 

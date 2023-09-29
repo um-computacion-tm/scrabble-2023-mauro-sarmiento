@@ -119,13 +119,13 @@ class TestBoard(unittest.TestCase):
     ['*','1','*','*','*','5','*','*','*','5','*','*','*','1','*'],
     ['0','*','*','4','*','*','*','0','*','*','*','4','*','*','0'],
 ])
-        self.assertEqual((tablero.wordCurrentPoints()), [1, 3, 1, 4, 1, 3, 4, 1, 1, 6])
+        self.assertEqual((tablero.wordCurrentPointsList()), [1, 3, 1, 4, 1, 3, 4, 1, 1, 6])
 
     def testListaDePuntajeAndDefCurrentWordsHorizontal(self):
         tablero = Board()
         tablero.initialBoard()
         tablero.writeInBoard(5, 0, 'H', 'CAFE')
-        self.assertEqual((tablero.wordCurrentPoints()), [3, 3, 4, 1])
+        self.assertEqual((tablero.wordCurrentPointsList()), [3, 3, 4, 1])
 
     def testMismaLetraEnHorizontal(self):
         tablero = Board()
